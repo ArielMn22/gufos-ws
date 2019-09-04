@@ -1,100 +1,133 @@
-import React, {Component} from 'react';
-// import '../../assets/css/login.css';
-import login from '../../assets/img/icon-login.png';
-import Axios from 'axios';
+import React, { Component } from "react";
+import { parseJwt } from "../../services/auth";
+import { Link, withRouter } from "react-router-dom";
 
-export default class Login extends Component {
-    constructor()
-    {
-        super();
+import logo from "../../assets/img/icon-login.png";
 
-        this.state ={
-            email : '',
-            senha : ''
+import "../../assets/css/login.css";
+import Axios from "axios";
+
+class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      senha: "",
+      erroMensagem: ""
+    };
+  }
+
+  atualizaEstadoEmail(event) {
+    this.setState({ email: event.target.value });
+  }
+
+  atualizaEstadoSenha(event) {
+    this.setState({ senha: event.target.value });
+  }
+
+  efetuaLogin(event) {
+    event.preventDefault();
+
+    // alert(this.state.email + " - " + this.state.senha);
+    let config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    Axios.post(
+      "http://localhost:5000/api/login",
+      {
+        email: this.state.email,
+        senha: this.state.senha
+      },
+      config
+    )
+      .then(data => {
+        console.log("status", data.status);
+        if (data.status === 200) {
+          
+          console.log(data);
+          localStorage.setItem("usuario-svigufo", data.data.token);
+          
+          //Verifica o tipo de usuário e redireciona para a página default
+          console.log("parse", parseJwt().permissao);
+
+          if (parseJwt().permissao == "ADMINISTRADOR") {
+            this.props.history.push("/eventos/cadastrar");
+          } else {
+            this.props.history.push("/eventos");
+          }
         }
-    }
+      })
+      .catch(erro => {
+        this.setState({ erroMensagem: "Email ou senha inválido" });
+      });
+  }
 
-    atualizaEstadoEmail(event)
-    {
-        this.setState({ email: event.target.value});
-    } // Utilizada para atualizar o valor do e-mail;
+  render() {
+    return (
+      <section className="container flex">
+        <div className="img__login">
+          <div className="img__overlay" />
+        </div>
 
-    atualizaEstadoSenha(event)
-    {
-        this.setState({ senha: event.target.value});
-    } // Utilizada para atualizar o valor da senha;
-
-    efetuaLogin(event)
-    {
-        event.preventDefault();
-
-        // alert(this.state.email + " - " + this.state.senha);
-        Axios.post('http://192.168.4.112:5000/api/login', {
-            email : this.state.email,
-            senha : this.state.senha
-        })
-        .then(data => {
-            localStorage.setItem("usuario-svigufo", data.data.token);
-            
-            this.props.history.push('/tiposeventos');
-
-            // console.log(data);
-        })
-        .catch(erro => {
-            console.log(erro)
-        });
-    }
-
-    render()
-    {
-        return(
-            <div>
-            <section className="container flex">
-            <div className="img__login"><div className="img__overlay"></div></div>
-
-            <div className="item__login">
-                <div className="row">
-                <div className="item">
-                    <img src={login} className="icone__login" />
-                </div>
-                <div className="item" id="item__title">
-                    <p className="text__login" id="item__description">
-                    Bem-vindo! Faça login para acessar sua conta.
-                    </p>
-                </div>
-                <form onSubmit={this.efetuaLogin.bind(this)}>
-                    <div className="item">
-                    <input
-                        className="input__login"
-                        placeholder="username"
-                        type="text"
-                        value={this.state.email}
-                        onChange={this.atualizaEstadoEmail.bind(this)}
-                        name="email"
-                        id="login__email"
-                        />
-                    </div>
-                    <div className="item">
-                    <input
-                        className="input__login"
-                        placeholder="password"
-                        type="password"
-                        value={this.state.senha}
-                        onChange={this.atualizaEstadoSenha.bind(this)}
-                        name="password"
-                        id="login__password"
-                        />
-                    </div>
-                    <div className="item">
-                    <button type="submit" className="btn btn__login" id="btn__login">
-                        Login
-                    </button>
-                    </div>
-                </form>
-                </div>
+        <div className="item__login">
+          <div className="row">
+            <div className="item">
+              <Link to="/">
+                <img src={logo} className="icone__login" alt="SviGufo" />
+              </Link>
             </div>
-            </section>
+            <div className="item" id="item__title">
+              <p className="text__login" id="item__description">
+                Bem-vindo! Faça login para acessar sua conta.
+              </p>
             </div>
-        );
-    }
+            <form onSubmit={this.efetuaLogin.bind(this)}>
+              <div className="item">
+                <input
+                  className="input__login"
+                  placeholder="username"
+                  type="text"
+                  value={this.state.email}
+                  onChange={this.atualizaEstadoEmail.bind(this)}
+                  name="username"
+                  id="login__email"
+                />
+              </div>
+              <div className="item">
+                <input
+                  className="input__login"
+                  placeholder="password"
+                  value={this.state.senha}
+                  onChange={this.atualizaEstadoSenha.bind(this)}
+                  type="password"
+                  name="password"
+                  id="login__password"
+                />
+              </div>
+              <p
+                className="text__login"
+                style={{ color: "red", textAlign: "center" }}
+              >
+                {this.state.erroMensagem}
+              </p>
+              <div className="item">
+                <button
+                  type="submit"
+                  className="btn btn__login"
+                  id="btn__login"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    );
+  }
 }
+
+export default withRouter(Login);

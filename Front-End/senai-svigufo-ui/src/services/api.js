@@ -9,7 +9,8 @@ import { AsyncSeriesHook } from "tapable";
 //   });
 // }; // Não deu certo, ainda.
 
-const url = "http://192.168.4.112:5000/api/";
+// const url = "http://192.168.4.112:5000/api/";
+const url = "http://localhost:5000/api/";
 
 const auth = "Bearer " + localStorage.getItem("usuario-svigufo");
 

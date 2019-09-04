@@ -1,13 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
+import Rodape from '../../components/Rodape/Rodape'
 
 class NaoEncontrada extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Página Não Encontrada</h1>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        Erro 404 - Página não encontrada.
+        <Rodape />
+      </div>
+    );
+  }
 }
 
 export default NaoEncontrada;
