@@ -18,4 +18,4 @@ Este repositório possui as seguintes partes do projeto:
 
 <br />
 
-Agora é só alegria!
+END.
