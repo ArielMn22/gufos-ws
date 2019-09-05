@@ -14,6 +14,13 @@ const url = "http://localhost:5000/api/";
 
 const auth = "Bearer " + localStorage.getItem("usuario-svigufo");
 
+const config = {
+  headers: {
+    "Content-Type" : "application/json",
+    "Authorization" : auth
+  }
+}
+
 export default {
   tiposEventos(tipoEvento) {
     return {

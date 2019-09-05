@@ -15,10 +15,11 @@ class Cabecalho extends Component {
         this.props.history.push('/');
     }
   render() {
+    // Header v1.0
     return (
       <header className="cabecalhoPrincipal">
         <div className="container">
-          <img src={logo} alt="SviGufo" />
+          <img src={logo} alt="Gufos" />
 
           <nav className="cabecalhoPrincipal-nav">
             <div>

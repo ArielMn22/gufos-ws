@@ -7,20 +7,25 @@ using Microsoft.AspNetCore.Mvc;
 using Senai.Gufos.WebApi.Domains;
 using Senai.Gufos.WebApi.Repositories;
 
-namespace Senai.Gufos.WebApi.Controllers
-{
-    [Route("api/[controller]")]
-    [Produces("application/json")]
+namespace Senai.Gufos.WebApi.Controllers {
+    [Route ("api/[controller]")]
+    [Produces ("application/json")]
     [ApiController]
-    public class EventosController : ControllerBase
-    {
+    public class EventosController : ControllerBase {
         // repositorio
-        EventoRepository EventoRepository = new EventoRepository();
+        EventoRepository EventoRepository = new EventoRepository ();
         // endpoints
         [HttpGet]
-        public IActionResult Listar()
-        {
-            return Ok(EventoRepository.Listar());
+        public IActionResult Listar () {
+            try {
+                return Ok (EventoRepository.Listar ());
+            } catch (Exception ex) {
+                return BadRequest (
+                    new {
+                        mensagem = "Erro: " + ex.Message
+                    }
+                );
+            }
         }
 
         /// <summary>
@@ -29,16 +34,12 @@ namespace Senai.Gufos.WebApi.Controllers
         /// <param name="evento">Evento</param>
         /// <returns>Mensagem de sucesso.</returns>
         [HttpPost]
-        public IActionResult Cadastrar(Eventos evento)
-        {
-            try
-            {
-                EventoRepository.Cadastrar(evento);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { mensagem = "Erro ao cadastrar." + ex.Message });
+        public IActionResult Cadastrar (Eventos evento) {
+            try {
+                EventoRepository.Cadastrar (evento);
+                return Ok ();
+            } catch (Exception ex) {
+                return BadRequest (new { mensagem = "Erro ao cadastrar." + ex.Message });
             }
         }
     }

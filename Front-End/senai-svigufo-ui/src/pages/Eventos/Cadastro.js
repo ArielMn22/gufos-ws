@@ -13,7 +13,7 @@ class Cadastro extends Component {
       titulo: "",
       dataEvento: "",
       acessoLivre: "",
-      tipoEventoId: "",
+      tipoEventoId: 0,
       instituicaoId: 1,
       descricao: "",
       listaTiposEventos: [],
@@ -21,15 +21,7 @@ class Cadastro extends Component {
     };
   }
 
-  componentDidMount() {
-    apiService
-      .call("tiposeventos")
-      .getAll()
-      .then(data => {
-        this.setState({ listaTiposEventos: data.data });
-        console.log("lista Tipos Eventos", this.state.listaTiposEventos);
-      });
-
+  buscaEventos() {
     apiService
       .call("eventos")
       .getAll()
@@ -37,6 +29,18 @@ class Cadastro extends Component {
         this.setState({ listaEventos: data.data });
         console.log("lista Eventos", this.state.listaEventos);
       });
+  }
+
+  componentDidMount() {
+    apiService
+      .call("categorias")
+      .getAll()
+      .then(data => {
+        this.setState({ listaTiposEventos: data.data });
+        console.log("lista Tipos Eventos", this.state.listaTiposEventos);
+      });
+
+    this.buscaEventos();
   }
 
   atualizaEstadoTitulo(event) {
@@ -66,12 +70,19 @@ class Cadastro extends Component {
       titulo: this.state.titulo,
       dataEvento: this.state.dataEvento,
       acessoLivre: this.state.acessoLivre,
-      tipoEventoId: this.state.tipoEventoId,
+      idCategoria: this.state.tipoEventoId,
       instituicaoId: this.state.instituicaoId,
       descricao: this.state.descricao
     };
 
-    axios.post("http://192.168.4.112:5000/api/tiposeventos");
+    console.log("Evento sendo cadastrado: ", evento);
+
+    // axios.post("http://192.168.4.112:5000/api/tiposeventos");
+
+    apiService.call("eventos").create(evento)
+    .then(() => {
+      this.buscaEventos();
+    });
 
     console.log(evento);
   }
@@ -122,20 +133,23 @@ class Cadastro extends Component {
                     id="evento__titulo"
                     value={this.state.titulo}
                     onChange={this.atualizaEstadoTitulo.bind(this)}
-                    placeholder="título do evento" required
+                    placeholder="título do evento"
+                    required
                   />
                   <input
                     type="date"
                     id="evento__data"
                     onChange={this.atualizaEstadoDataEvento.bind(this)}
                     value={this.state.dataEvento}
-                    placeholder="dd/MM/yyyy" required
+                    placeholder="dd/MM/yyyy"
+                    required
                   />
 
                   <select
                     id="option__acessolivre"
                     value={this.state.acessoLivre}
-                    onChange={this.atualizaEstadoAcessoLivre.bind(this)} required
+                    onChange={this.atualizaEstadoAcessoLivre.bind(this)}
+                    required
                   >
                     <option>Selecione</option>
                     <option value="1">Livre</option>
@@ -145,12 +159,17 @@ class Cadastro extends Component {
                   <select
                     id="option__tipoevento"
                     value={this.state.tipoEventoId}
-                    onChange={this.atualizaEstadoTipoEvento.bind(this)} required
+                    onChange={this.atualizaEstadoTipoEvento.bind(this)}
+                    required
                   >
                     <option>Selecione</option>
                     {this.state.listaTiposEventos.map(element => {
+                      console.log("Elemento", element);
                       return (
-                        <option key={element.id} value={element.id}>
+                        <option
+                          key={element.idCategoria}
+                          value={element.idCategoria}
+                        >
                           {element.nome}
                         </option>
                       );
@@ -162,9 +181,13 @@ class Cadastro extends Component {
                     placeholder="descrição do evento"
                     value={this.state.descricao}
                     onChange={this.atualizaEstadoDescricao.bind(this)}
-                    id="evento__descricao"  required
+                    id="evento__descricao"
+                    required
                   />
-                  <button type="submit" className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro">
+                  <button
+                    type="submit"
+                    className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro"
+                  >
                     Cadastrar
                   </button>
                 </div>

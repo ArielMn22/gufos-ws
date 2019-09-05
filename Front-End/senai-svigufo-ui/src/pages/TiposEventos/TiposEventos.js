@@ -1,56 +1,72 @@
 import React, { Component } from "react";
-import Header from '../../components/Cabecalho';
-
+import Header from "../../components/Cabecalho";
 
 import "../../assets/css/flexbox.css";
 import "../../assets/css/reset.css";
 import "../../assets/css/style.css";
 
-import Titulo from '../../components/Titulo';
+import Titulo from "../../components/Titulo";
 import Rodape from "../../components/Rodape/Rodape";
+import apiService from "../../services/apiService";
 
 class TiposEventos extends Component {
-  constructor(){
-      super();
-      this.state = {
-        lista : [],
-        nome: "",
-        tituloPagina : "Lista Tipos Eventos"
-      }
+  constructor() {
+    super();
+    this.state = {
+      lista: [],
+      nome: "",
+      tituloPagina: "Lista Tipos Eventos"
+    };
 
-      this.atualizaEstadoNome = this.atualizaEstadoNome.bind(this);
-      this.cadastraTipoEvento = this.cadastraTipoEvento.bind(this);
+    this.atualizaEstadoNome = this.atualizaEstadoNome.bind(this);
+    this.cadastraTipoEvento = this.cadastraTipoEvento.bind(this);
   }
 
-  buscarTiposEventos(){
-      fetch('http://192.168.4.112:5000/api/tiposeventos')
-        .then(resposta => resposta.json())
-        .then(data => this.setState({lista : data}))
-        .catch((erro) => console.log(erro))
+  buscarTiposEventos() {
+    // Old
+    // fetch('http://192.168.4.112:5000/api/tiposeventos')
+    //   .then(resposta => resposta.json())
+    //   .then(data => this.setState({lista : data}))
+    //   .catch((erro) => console.log(erro))
+    apiService
+      .call("categorias")
+      .getAll()
+      .then(data => {
+        this.setState({ lista: data.data });
+      })
+      .catch(erro => console.log(erro));
   }
 
-  componentDidMount(){
-      this.buscarTiposEventos();
+  componentDidMount() {
+    this.buscarTiposEventos();
   }
 
-  atualizaEstadoNome(event){
-    this.setState({ nome : event.target.value });
+  atualizaEstadoNome(event) {
+    this.setState({ nome: event.target.value });
   }
 
-  cadastraTipoEvento(event){
+  cadastraTipoEvento(event) {
     event.preventDefault();
-    
-    fetch('http://192.168.4.112:5000/api/tiposeventos',
-        {
-          method: 'POST',
-          body : JSON.stringify({ nome : this.state.nome }),
-          headers: {
-            "Content-Type" : "application/json"
-          }
-        })
-        .then(resposta => resposta)
-        .then(this.buscarTiposEventos())
-        .catch(erro => console.log(erro))
+
+    //Old
+    // fetch("http://192.168.4.112:5000/api/tiposeventos", {
+    //   method: "POST",
+    //   body: JSON.stringify({ nome: this.state.nome }),
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   }
+    // })
+    //   .then(resposta => resposta)
+    //   .then(this.buscarTiposEventos())
+    //   .catch(erro => console.log(erro));
+
+    apiService
+      .call("categorias")
+      .create(JSON.stringify({ nome: this.state.nome }))
+      .then(resposta => {
+        this.buscarTiposEventos();
+      })
+      .catch(erro => console.log(erro));
   }
 
   render() {
@@ -74,16 +90,14 @@ class TiposEventos extends Component {
                 </thead>
 
                 <tbody>
-                    {
-                        this.state.lista.map(function(tipoevento){
-                            return (
-                                <tr key={tipoevento.id}>
-                                    <td>{tipoevento.id}</td>
-                                    <td>{tipoevento.nome}</td>
-                                </tr>
-                            );
-                        })
-                    }
+                  {this.state.lista.map(function(tipoevento) {
+                    return (
+                      <tr key={tipoevento.idCategoria}>
+                        <td>{tipoevento.idCategoria}</td>
+                        <td>{tipoevento.nome}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

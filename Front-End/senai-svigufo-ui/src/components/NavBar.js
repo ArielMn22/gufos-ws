@@ -17,7 +17,7 @@ class NavBar extends Component {
   }
 
   render() {
-    if (usuarioAutenticado() && parseJwt().Role === "ADMINISTRADOR") {
+    if (usuarioAutenticado() && parseJwt().permissao === "ADMINISTRADOR") {
       return (
         <div>
           <Link to="/tiposeventos">Tipos Eventos</Link>

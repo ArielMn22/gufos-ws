@@ -18,7 +18,7 @@ class App extends Component {
 
         <section className="conteudoImagem">
           <div>
-            <h1>Svigufo</h1>
+            <h1>Gufos</h1>
             <h2>Área de eventos da Escola SENAI de Informática.</h2>
           </div>
         </section>
