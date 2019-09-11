@@ -15,6 +15,7 @@ namespace Senai.Gufos.WebApi
       
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configura informações referentes ao JSON.
             services.AddMvc()
                 .AddJsonOptions(options => 
                 {
