@@ -1,4 +1,5 @@
 ﻿using Senai.Gufos.WebApi.Domains;
+using Senai.Gufos.WebApi.Interfaces;
 using Senai.Gufos.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Senai.Gufos.WebApi.Repositories
 {
-    public class UsuarioRepository
+    public class UsuarioRepository : IUsuarioRepository
     {
-        public Usuarios BuscarPorEmailESenha(LoginViewModel login)
+        public Usuarios BuscarPorEmaileSenha(LoginViewModel login)
         {
             using (GufosContext ctx = new GufosContext())
             {

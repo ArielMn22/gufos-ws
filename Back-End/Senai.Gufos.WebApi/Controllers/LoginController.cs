@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Senai.Gufos.WebApi.Domains;
+using Senai.Gufos.WebApi.Interfaces;
 using Senai.Gufos.WebApi.Repositories;
 using Senai.Gufos.WebApi.ViewModels;
 
@@ -18,14 +19,19 @@ namespace Senai.Gufos.WebApi.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        UsuarioRepository UsuarioRepository = new UsuarioRepository();
+        private IUsuarioRepository UsuarioRepository { get; set; }
+
+        public LoginController()
+        {
+            UsuarioRepository = new UsuarioRepository();
+        }
 
         [HttpPost]
         public IActionResult Login(LoginViewModel login)
         {
             try
             {
-                Usuarios usuarioBuscado = UsuarioRepository.BuscarPorEmailESenha(login);
+                Usuarios usuarioBuscado = UsuarioRepository.BuscarPorEmaileSenha(login);
                 if (usuarioBuscado == null)
                     return NotFound(new { mensagem = "Email ou Senha Inválidos." });
 

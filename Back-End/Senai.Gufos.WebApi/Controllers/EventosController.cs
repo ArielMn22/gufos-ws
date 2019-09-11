@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.Gufos.WebApi.Domains;
+using Senai.Gufos.WebApi.Interfaces;
 using Senai.Gufos.WebApi.Repositories;
 
 namespace Senai.Gufos.WebApi.Controllers {
@@ -12,13 +13,19 @@ namespace Senai.Gufos.WebApi.Controllers {
     [Produces ("application/json")]
     [ApiController]
     public class EventosController : ControllerBase {
+        private IEventoRepository EventoRepository { get; set; }
+
+        public EventosController()
+        {
+            EventoRepository = new EventoRepository();    
+        }
+
         // repositorio
-        EventoRepository EventoRepository = new EventoRepository ();
         // endpoints
         [HttpGet]
         public IActionResult Listar () {
             try {
-                return Ok (EventoRepository.Listar ());
+                return Ok (EventoRepository.ListarTodos());
             } catch (Exception ex) {
                 return BadRequest (
                     new {

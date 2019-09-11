@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Ariel\\Code-Repositories\\GitHub\\svigufo-ws\\Back-End\\Senai.Gufos.WebApi\\Senai.Gufos.WebApi.csproj": {}
+    "C:\\Users\\33747821839\\Documents\\gufos-ws\\Back-End\\Senai.Gufos.WebApi\\Senai.Gufos.WebApi.csproj": {}
   },
   "projects": {
-    "E:\\Ariel\\Code-Repositories\\GitHub\\svigufo-ws\\Back-End\\Senai.Gufos.WebApi\\Senai.Gufos.WebApi.csproj": {
+    "C:\\Users\\33747821839\\Documents\\gufos-ws\\Back-End\\Senai.Gufos.WebApi\\Senai.Gufos.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Ariel\\Code-Repositories\\GitHub\\svigufo-ws\\Back-End\\Senai.Gufos.WebApi\\Senai.Gufos.WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\33747821839\\Documents\\gufos-ws\\Back-End\\Senai.Gufos.WebApi\\Senai.Gufos.WebApi.csproj",
         "projectName": "Senai.Gufos.WebApi",
-        "projectPath": "E:\\Ariel\\Code-Repositories\\GitHub\\svigufo-ws\\Back-End\\Senai.Gufos.WebApi\\Senai.Gufos.WebApi.csproj",
-        "packagesPath": "C:\\Users\\Sexta-Feira\\.nuget\\packages\\",
-        "outputPath": "E:\\Ariel\\Code-Repositories\\GitHub\\svigufo-ws\\Back-End\\Senai.Gufos.WebApi\\obj\\",
+        "projectPath": "C:\\Users\\33747821839\\Documents\\gufos-ws\\Back-End\\Senai.Gufos.WebApi\\Senai.Gufos.WebApi.csproj",
+        "packagesPath": "C:\\Users\\33747821839\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\33747821839\\Documents\\gufos-ws\\Back-End\\Senai.Gufos.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sexta-Feira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\33747821839\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

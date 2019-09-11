@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.Gufos.WebApi.Domains;
+using Senai.Gufos.WebApi.Interfaces;
 using Senai.Gufos.WebApi.Repositories;
 
 namespace Senai.Gufos.WebApi.Controllers {
@@ -13,14 +14,20 @@ namespace Senai.Gufos.WebApi.Controllers {
     [Produces ("application/json")]
     [ApiController]
     public class CategoriasController : ControllerBase {
-        CategoriaRepository CategoriaRepository = new CategoriaRepository ();
+
+        private ICategoriaRepository CategoriaRepository {get; set; }
+
+        public CategoriasController()
+        {
+            CategoriaRepository = new CategoriaRepository();
+        }
 
         [HttpGet]
         [Authorize]
         // IEnumerable<Categorias>
         public IActionResult Listar () {
             try {
-                return Ok (CategoriaRepository.Listar ());
+                return Ok (CategoriaRepository.ListarTodos());
             } catch (Exception ex) {
                 return BadRequest (new { mensagem = "Erro: " + ex.Message });
             }
@@ -44,7 +51,7 @@ namespace Senai.Gufos.WebApi.Controllers {
         [Authorize (Roles = "ADMINISTRADOR")]
         [HttpGet ("{id}")]
         public IActionResult BuscarPorId (int id) {
-            Categorias Categoria = CategoriaRepository.BuscarPorId (id);
+            Categorias Categoria = CategoriaRepository.BuscarPorId(id);
             if (Categoria == null)
                 return NotFound ();
             return Ok (Categoria);
@@ -52,7 +59,7 @@ namespace Senai.Gufos.WebApi.Controllers {
 
         [HttpDelete ("{id}")]
         public IActionResult Deletar (int id) {
-            CategoriaRepository.Deletar (id);
+            CategoriaRepository.DeletarPorId(id);
             return Ok ();
         }
 

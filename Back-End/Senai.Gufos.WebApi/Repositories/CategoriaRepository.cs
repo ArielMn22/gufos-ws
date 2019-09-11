@@ -1,14 +1,15 @@
 ﻿using Senai.Gufos.WebApi.Domains;
-using System;
+using Senai.Gufos.WebApi.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Linq;
+using System;
 
 namespace Senai.Gufos.WebApi.Repositories
 {
-    public class CategoriaRepository
+    public class CategoriaRepository : ICategoriaRepository
     {
-        public List<Categorias> Listar()
+        public List<Categorias> ListarTodos()
         {
             using (GufosContext ctx = new GufosContext())
             {
@@ -53,7 +54,7 @@ namespace Senai.Gufos.WebApi.Repositories
         }
 
         // deletar
-        public void Deletar(int id)
+        public void DeletarPorId(int id)
         {
             using (GufosContext ctx = new GufosContext())
             {

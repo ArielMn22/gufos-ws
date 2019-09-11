@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Senai.Gufos.WebApi.Domains;
+using Senai.Gufos.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Senai.Gufos.WebApi.Repositories
 {
-    public class EventoRepository
+    public class EventoRepository : IEventoRepository
     {
         // listar
-        public List<Eventos> Listar()
+        public List<Eventos> ListarTodos()
         {
             using (GufosContext ctx = new GufosContext())
             {

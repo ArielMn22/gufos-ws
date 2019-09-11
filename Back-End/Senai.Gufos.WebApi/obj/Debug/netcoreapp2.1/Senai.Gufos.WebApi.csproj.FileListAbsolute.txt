@@ -26,3 +26,17 @@ E:\Ariel\Code-Repositories\GitHub\svigufo-ws\Back-End\Senai.Gufos.WebApi\obj\Deb
 E:\Ariel\Code-Repositories\GitHub\svigufo-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.RazorTargetAssemblyInfo.cache
 E:\Ariel\Code-Repositories\GitHub\svigufo-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.dll
 E:\Ariel\Code-Repositories\GitHub\svigufo-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.pdb
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\bin\Debug\netcoreapp2.1\Senai.Gufos.WebApi.deps.json
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\bin\Debug\netcoreapp2.1\Senai.Gufos.WebApi.runtimeconfig.json
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\bin\Debug\netcoreapp2.1\Senai.Gufos.WebApi.runtimeconfig.dev.json
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\bin\Debug\netcoreapp2.1\Senai.Gufos.WebApi.dll
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\bin\Debug\netcoreapp2.1\Senai.Gufos.WebApi.pdb
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.csprojAssemblyReference.cache
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.csproj.CoreCompileInputs.cache
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.RazorAssemblyInfo.cache
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.RazorAssemblyInfo.cs
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.AssemblyInfoInputs.cache
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.AssemblyInfo.cs
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.RazorTargetAssemblyInfo.cache
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.dll
+C:\Users\33747821839\Documents\gufos-ws\Back-End\Senai.Gufos.WebApi\obj\Debug\netcoreapp2.1\Senai.Gufos.WebApi.pdb
