@@ -32,25 +32,20 @@ class Login extends Component {
     let config = {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin" : "*"
+        "Access-Control-Allow-Origin": "*"
       }
     };
 
-    api.post(
-      "/login",
-      {
+    api.post("/login", {
         email: this.state.email,
         senha: this.state.senha
-      },
-      config
-    )
+      })
       .then(data => {
         console.log("status", data.status);
         if (data.status === 200) {
-          
           console.log(data);
           localStorage.setItem("usuario-gufos", data.data.token);
-          
+
           //Verifica o tipo de usuário e redireciona para a página default
           console.log("parse", parseJwt().permissao);
 
@@ -63,6 +58,7 @@ class Login extends Component {
       })
       .catch(erro => {
         this.setState({ erroMensagem: "Email ou senha inválido" });
+        alert(this.state.erroMensagem);
       });
   }
 
